@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 
-const app = express();
+const app = require("https-localhost")()
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -28,6 +28,10 @@ mongoose
 app.get('/', (req,res) => {
     res.send("<h1> we're home ^^ </h1>")
 })
+
+app.get('/login', (req,res) => {
+    res.send("<h1> It worked ^^ </h1>")
+})
 app.use("/api/users",userRoutes);
 app.use("/api/auth",authRoutes);
 
@@ -42,7 +46,7 @@ var oauth2 = new OAuth2("248168070726587",
                    null);
   
 app.get('/facebook/auth',function (req, res) {
-      var redirect_uri = "http://localhost:5050/";
+      var redirect_uri = "https://localhost:5050/login";
       // For eg. "http://localhost:3000/facebook/callback"
       var params = {'redirect_uri': redirect_uri, 'scope':'public_profile'};
       res.redirect(oauth2.getAuthorizeUrl(params));
