@@ -39,8 +39,8 @@ app.use("/api/auth",authRoutes);
 //facebook login uri
 var request = require('request');
 var OAuth2 = require('oauth').OAuth2;
-var oauth2 = new OAuth2("248168070726587",
-                        "72df90e90483d55e8f6b560e1dc8c6a6",
+var oauth2 = new OAuth2(process.env.APP_ID,
+                        process.env.APP_SECRET,
                        "", "https://www.facebook.com/dialog/oauth",
                    "https://graph.facebook.com/oauth/access_token",
                    null);
